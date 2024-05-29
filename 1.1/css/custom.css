@@ -1,0 +1,151 @@
+
+html,
+body {
+    height: 100%;
+}
+
+.navBarCustom {
+    background-color: rgb(255, 255, 255);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.borderedDiv {
+    border: solid black 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 5px;
+}
+
+.cusLi {
+    margin-right: 30px;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.grayscale:hover{
+    filter: grayscale(0%);
+}
+
+a{
+    color:#0505ff;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+  }
+
+a:hover{
+    color:rgb(0, 119, 255);
+}
+
+.positioned{
+    position: relative;
+}
+
+/* This is for mobile width ******************************************************************************************************/
+@media only screen and (max-width: 992px) {
+    #Hero{
+        border-top: 4px solid navy;
+        border-bottom: 4px solid navy;
+    }
+
+    
+    .text {
+        /* Equivalent to fs-2 in Bootstrap */
+        font-size: calc(1.325rem + 0.1vw) !important;
+    }
+
+    .cusLink {
+        height: 69px;
+        width: 150px;
+        padding-left: 32px;
+        padding-top: 16px;
+    }
+
+    .socialMedia {
+        height: 100px;
+        width: 100px;
+        background: url("../includes/images/linkedinIcon.png") no-repeat;
+    }
+
+    /* This can be used to display a smaller image to save computational resources on mobile while retaining fidelity on desktop */
+
+    .imageMobile {
+        display: inline;
+    }
+
+    .imageDesktop {
+        display: none;
+    }
+    /*******************************************************************************************************************************/
+}
+/***********************************************************************************************************************************/
+
+/* Desktop width *******************************************************************************************************************/
+@media only screen and (min-width: 992px) {
+    #Hero{
+        position: absolute;
+        top: 63px;
+        right: 190px;
+        border: 3px solid navy;
+        border-radius: 15px;
+        width: 30%;
+        background: rgba(0, 0, 128, .7);
+        color: white;
+    }
+
+    .text {
+        /* Equivalent to fs-5 in Bootstrap */
+        font-size: 1.25rem !important;
+    }
+
+    .socialMedia {
+        height: 60px;
+        width: 60px;
+        background: url("../includes/images/linkedinIcon.png") no-repeat;
+        background-color: #000080;
+        border-radius: 10px;
+    }
+
+    .socialMedia:hover {
+        height: 60px;
+        width: 60px;
+        background: url("../includes/images/linkedinIcon.png") no-repeat;
+        background-color: #1111a3;
+    }
+
+    /* This can be used to display a smaller image to save computational resources on mobile while retaining fidelity on desktop */
+    .imageMobile {
+        display: none; 
+    }
+
+    .imageDesktop {
+        display: inline;
+    }
+    /*******************************************************************************************************************************/
+
+    .linkHover > *:hover {
+        background-color: #1111a3 !important;
+    }
+}
+/***********************************************************************************************************************************/
