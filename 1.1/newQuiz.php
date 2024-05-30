@@ -1,19 +1,10 @@
 <?php
+    include './includes/functions/connectDatabase.php';
     // Start the session
     session_start();
 
     // connect to the database
-    try 
-    {
-        $conn = new PDO("mysql:host=localhost;dbname=QuizDatabase", "root", "Chyuugokugo2");
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "Connected successfully"; 
-    } 
-    catch(PDOException $e) 
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $conn = connectDatabase();
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +14,23 @@
         <title>Quiz</title>
         <?php
             include './includes/headLinks.php';
+            include './includes/functions/printQuiz.php';
         ?>
     </head>
 
     <body>
         <?php
             include './includes/navbar.php';
+
+            // test
+            /*
+            echo '<pre>';
+            print_r($_POST);
+            print('</pre>');
+            */
         ?>
 
-        <div class='container rounded border border-primary shadow w-50'>
+        <div class='container rounded border border-primary shadow w-75'>
             <h1>Questions List</h1>
 
             <br /><br />
@@ -39,7 +38,7 @@
             <form action="/results.php" method="post" autocomplete="off">
                 <?php
                     // test
-                    $dbArray;
+                    //$dbArray;
 
                     // Send the array to the database
                     // prepare sql and bind parameters
@@ -59,7 +58,7 @@
                         // test
                         //print("Statement just executed");
                     } 
-                    catch(PDOException $e) 
+                    catch(PDOException $e)
                     {
                         echo "Error: " . $e->getMessage();
                     }
@@ -71,6 +70,13 @@
                     $_SESSION['POST'] = $_POST;
 
                     // test
+                    /*
+                    print('<pre>');
+                    print_r($_POST);
+                    print('</pre>');
+                    */
+
+                    // test
                     //print_r($_POST);
 
                     // test
@@ -78,52 +84,15 @@
                     //printf('<br />' . $_SESSION['POST']['3']);
                     
                     // The new quiz being printed out to be taken
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") 
+                    if ($_SERVER["REQUEST_METHOD"] == "POST")
                     {
-                        
-                        $qCount = 1;
-
-                        $qArray = array();
-
-                        // Putting the questions into an array while
-                        // retaining the original key values to shuffle them for the
-                        // user
-                        foreach ($_POST as $key => $value) 
-                        {  
-                            $key = (int) $key;
-
-                            if($key % 2 == 1)
-                            {
-                                // Odd parity
-                                $qArray[$key] = $value;
-
-                                // test
-                                //print_r($qArray);
-                                //print('<br />');
-                            }
-                        }
-
-                        // Shuffle the question array to make the user print out less predictable
-                        uasort($qArray, function($a, $b) 
-                        {
-                            return rand(-1, 1);
-                        });
-
-                        // Printing out the questions for the user to answer
-                        foreach($qArray as $key => $value)
-                        {
-                            // User print out
-                            printf('Question ' . $qCount . ': ' . $value
-                                . '<br /> <input type="text" name=' . $key . ' >
-                                <br /><br />'
-                            );
-                            $qCount++;
-                        }
+                        printQuiz($_POST);
                     }
                 ?>
 
                 <input type="submit" class="btn btn-primary" value="Submit Answers">
             </form>
+            <br />
         </div>
     </body>
 </html>

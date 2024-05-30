@@ -18,7 +18,7 @@
         <?php
             include './includes/navbar.php';
 
-            print('<div class="container rounded border border-primary shadow w-50">');
+            print('<div class="container rounded border border-primary shadow w-75">');
 
             $count = 1;
             $total = 0;
@@ -41,78 +41,112 @@
             //print_r($_SESSION['POST']);
             //print("<br /><br />");
 
+            //test
+            /*
+            print('<pre>');
+            print_r($_SESSION['POST']);
+            print('</pre>');
+            print('<pre>');
+            print_r($_POST);
+            print('</pre>');
+            */
+
+            print('<br />');
+
             // $value is the original answer provided by the quiz maker
-            foreach($_SESSION['POST'] as $sessionKey => $sessionValue)
+            foreach($_POST as $postKey => $postValue)
             {
-                // Add one to the total
                 $total++;
+                $isAnswer = false;
+                $isQuestion = false;
+                $wasCorrect = false;
+                $count = 0;
 
-                $sessionKey = (int) $sessionKey;
-
-                if($sessionKey % 2 == 0)
+                // itterating through the session array seeking out the question
+                // and it's acceptable answers
+                foreach($_SESSION['POST'] as $sessionKey => $sessionValue)
                 {
                     // test
-                    //printf('Even parity');
-                    //print($sValue . '<br /><br />');
+                    //print('Current sessionValue: ' . $sessionValue . '<br />');
+                    //print('Current sessionKey: ' . $sessionKey . '<br />');
 
-                    $sessionKey = (string) $sessionKey;
-
-                    foreach($_POST as $postKey => $postValue)
+                    // If the user answer key is equal to the session key it's the question to be compared
+                    if($sessionKey == $postKey)
                     {
-                        $postKey = (int) $postKey;
-                        $postKey = $postKey + 1;
-                        $postKey = (string) $postKey;
+                        $isQuestion = true;
+                        $count = 0;
+                        print('<p class="boldInlinePara">Question: ' . $sessionValue . '</p><br /><br />');
+                    }
 
-                        if($postKey == $sessionKey)
+                    // test
+                    //print('First char of sessionKey: ' . $sessionKey[0] . '<br />');
+                    //print('If it is the question being seeked: ' . $isQuestion . '<br />');
+                    //print('The count var: ' . $count . '<br />');
+
+                    // this is when the question has been found and the current key is an answer
+                    if($sessionKey[0] == 'a' && $isQuestion)
+                    {
+                        if($sessionValue == $postValue)
                         {
-                            $postValueU = strtoupper($postValue);
-                            $sessionValueU = strtoupper($sessionValue);
-
-                            if($sessionValueU == $postValueU)
-                            {
-                                // Question
-                                printf('Question: ' . $question . '<br />');
-
-                                // User answer
-                                printf('Your answer: ' . $postValue . '<br />');
-
-                                // Right answer
-                                printf('Right answer: ' . $sessionValue . '<br />');
-
-                                printf("Correct :) <br /><br />");
-
-                                $correct++;
-                            }
-                            else
-                            {
-                                // Question
-                                printf('Question: ' . $question . '<br />');
-
-                                // User answer
-                                printf('Your answer: ' . $postValue . '<br />');
-
-                                // Right answer
-                                printf('Right answer: ' . $sessionValue . '<br />');
-
-                                printf("WRONG <br /><br />");
-                            }
+                            $wasCorrect = true;
                         }
+
+                        print('Acceptable answer: ' . $sessionValue . '<br />');
+
+                        // test
+                        //print('User answer: ' . $postValue . '<br />');
+                    }
+                    else if($sessionKey[0] == 'q' && $isQuestion && $count > 0)
+                    {
+                        print('Your answer: ' . $postValue . '<br />');
+
+                        if($wasCorrect)
+                        {
+                            print("<p class='rightAnswer'>You're right :)</p><br />");
+                        }
+                        else
+                        {
+                            print("<p class='wrongAnswer'>WRONG >_<</p> <br />");
+                        }
+
+                        //print('<br />');
+                        break;
+                    }
+
+                    $count++;
+
+                    if($sessionKey === array_key_last($_SESSION['POST']))
+                    {
+                        print('Your answer: ' . $postValue . '<br />');
+
+                        if($wasCorrect)
+                        {
+                            print("<p class='rightAnswer'>You're right :)</p> <br />");
+                        }
+                        else
+                        {
+                            print("<p class='wrongAnswer'>WRONG >_<</p> <br />");
+                        }
+
+                        //print('<br />');
                     }
                 }
-                else
+
+                // when the user provided one of the acceptable answers a bool will be true 
+                // increment number of correct answers
+                if($wasCorrect)
                 {
-                    $question = $sValue;
+                    $correct++;
                 }
-                //printf($value . '<br />');
             }
+
+            // their score
+
 
             // test //////////////////////////////////////////////////////////////////////////
             //print('Total variable: ' . $total . '<br /><br />');
 
-            $total = $total/2;
-
-            $total = (int) $total;
-
+            print('<br />');
             printf('Your score: ' . $correct . '/' . ($total) . '<br />');
             $score = $correct/($total);
             printf("%.2f", $score * 100);
@@ -130,7 +164,7 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link text" aria-current="page" 
-                                href='/index.php'>
+                                    href='/index.php'>
                                     Home
                                 </a>
                             </li>

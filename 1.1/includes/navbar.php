@@ -3,7 +3,47 @@
     if($_SERVER['PHP_SELF'] == '/index.php')
     {
         printf('
-            <nav class="navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
+            <div class="thinNavbar">
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text active" aria-current="page" 
+                                            href="/index.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="oldQuiz.php">
+                                            Quizes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="wideNavbar navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
                 <div class="container-fluid">
                     <button class="navbar-toggler bg-primary" style="margin-bottom: 20px; 
                     margin-left: 4px; width: 80px; height: 80px;" type="button" data-bs-toggle="collapse" 
@@ -15,11 +55,12 @@
                     <div class="collapse navbar-collapse text-center" id="navbarsExample05">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text active" aria-current="page" href="index.php">Home</a>
+                                <a class="nav-link text active" href="index.php">Home</a>
                             </li>
             
                             <li class="nav-item">
-                                <a class="nav-link text" href="oldQuiz.php">Quizes</a>
+                                <a class="nav-link text" aria-current="page"
+                                 href="oldQuiz.php">Quizes</a>
                             </li>
                         </ul>
                     </div>
@@ -30,7 +71,47 @@
     else if($_SERVER['PHP_SELF'] == '/newQuiz.php')
     {
         printf('
-            <nav class="navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
+            <div class="thinNavbar">
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="/index.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="oldQuiz.php">
+                                            Quizes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="wideNavbar navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
                 <div class="container-fluid">
                     <button class="navbar-toggler bg-primary" style="margin-bottom: 20px; 
                     margin-left: 4px; width: 80px; height: 80px;" type="button" data-bs-toggle="collapse" 
@@ -58,7 +139,47 @@
     else if($_SERVER['PHP_SELF'] == '/oldQuiz.php')
     {
         printf('
-            <nav class="navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
+            <div class="thinNavbar">
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="/index.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text active" aria-current="page" 
+                                            href="oldQuiz.php">
+                                            Quizes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="wideNavbar navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
                 <div class="container-fluid">
                     <button class="navbar-toggler bg-primary" style="margin-bottom: 20px; 
                     margin-left: 4px; width: 80px; height: 80px;" type="button" data-bs-toggle="collapse" 
@@ -86,7 +207,47 @@
     else if($_SERVER['PHP_SELF'] == '/takeQuiz.php')
     {
         printf('
-            <nav class="navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
+            <div class="thinNavbar">
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="/index.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="oldQuiz.php">
+                                            Quizes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="wideNavbar navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
                 <div class="container-fluid">
                     <button class="navbar-toggler bg-primary" style="margin-bottom: 20px; 
                     margin-left: 4px; width: 80px; height: 80px;" type="button" data-bs-toggle="collapse" 
@@ -114,7 +275,47 @@
     else if($_SERVER['PHP_SELF'] == '/results.php')
     {
         printf('
-            <nav class="navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
+            <div class="thinNavbar">
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="/index.php">
+                                            Home
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="container">
+                    <!-- This is a navbar link used in the middle of the page -->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white" 
+                        aria-label="Lenton IT Navbar">
+                        <div class="container-fluid">
+                            <div class="" id="navbarsExample05">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link text" aria-current="page" 
+                                            href="oldQuiz.php">
+                                            Quizes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="wideNavbar navbar navbar-expand-lg navbar-light bg-white" aria-label="Lenton IT Navbar">
                 <div class="container-fluid">
                     <button class="navbar-toggler bg-primary" style="margin-bottom: 20px; 
                     margin-left: 4px; width: 80px; height: 80px;" type="button" data-bs-toggle="collapse" 

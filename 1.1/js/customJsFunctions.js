@@ -63,31 +63,33 @@ $(document).ready
   function()
   {
     var qCount = 0;
-    var aCount = 0;
+    var qName = 'q';
+    var aName = 'a';
     var lineBreak = '<br />';
 
     $('#spawnButton').click(function()
     {
       qCount++;
-      aCount = 0;
-      aCount++;
+      qName = qName + 'q';
+      aName = aName + 'a';
+      //aCount++;
 
-      var label1 = $('<label>').attr('for', 'q' + qCount).text
+      var label1 = $('<label>').attr('for', qName).text
       ('Question ' + qCount + ': ');
 
       var input1 = $('<input>').attr({
         type: 'text',
-        name: qCount,
-        id: 'q' + qCount
+        name: qName,
+        id: qName
       });
 
-      var label2 = $('<label>').attr('for', 'q' + qCount + 'a' + aCount).text
+      var label2 = $('<label>').attr('for', aName).text
       ('Answer: ');
 
       var input2 = $('<input>').attr({
         type: 'text',
-        name: aCount,
-        id: 'q' + qCount + 'a' + aCount
+        name: aName,
+        id: aName
       });
 
       let divNum = qCount;
@@ -105,11 +107,11 @@ $(document).ready
         }).text('New answer');
 
       $('#dynamicForm').append(label1, input1, lineBreak,
-       label2, input2, lineBreak, div, lineBreak, lineBreak);
+       label2, input2, lineBreak, div, newAnswerButton, lineBreak, lineBreak);
 
-      
+      $('html, body').animate({ scrollTop: $(document).height() }, 1);
 
-      $('#answerDiv' + qCount).append(newAnswerButton);
+      //$('#answerDiv' + qCount).append(newAnswerButton);
     });
   }
 );
@@ -138,7 +140,20 @@ function spawnNewAnswer(buttonID)
 
   // this retrieves the element id of the last answer /////////////////////////////////////
   const currentElement = $('#' + buttonID);
+
   const previousElement = $(currentElement).prev();
+  const previousElementId = $(previousElement).attr('id');
+
+  const beforePreviousElement = $(previousElement).prev();
+
+  const lastInputElement = $(beforePreviousElement).prev();
+  const lastInputElementId = $(lastInputElement).attr('id');
+
+  const previousElementChild = $('#' + previousElementId).children().last();
+  const beforePreviousElementChild = $(previousElementChild).prev();
+  const beforePreviousElementChildId = $(beforePreviousElementChild).attr('id');
+
+  /*
   const beforePreviousElement = $(previousElement).prev();
   const beforePreviousElementId = $(beforePreviousElement).attr('id');
   const parentElement = $(currentElement).parent();
@@ -146,100 +161,59 @@ function spawnNewAnswer(buttonID)
   const beforeParentElement = $(parentElement).prev();
   const firstAnswer = $(beforeParentElement).prev();
   const firstAnswerId = $(firstAnswer).attr('id');
+  */
 
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  let numberIndex2 = -1;
-
-  var numberInstance = 0;
-
-  // Iterate through the string to find the index of the first numeric character
-  for(let j = 0; j < firstAnswerId.length; j++)
-  {
-    if (!isNaN(firstAnswerId[j]) && firstAnswerId[j] !== ' ')
-    {
-      if(numberInstance > 0)
-      {
-        numberIndex2 = j; // Update the index when the first numeric character is found
-        break;
-      }
-      numberInstance++;
-    }
-  }
-
-  // Check if a numeric character was found and remove characters before it
-  let aNumber = numberIndex2 !== -1 ? firstAnswerId.substring(numberIndex2) 
-  : 'failed';
-
   /*
-  if(currentElementId != )
+  if (previousElement.childElementCount > 0) 
   {
+    // The previous sibling has children
+    // Add your logic or styles here
 
+    // test
+    document.getElementById("test").innerHTML = previousElement.childElementCount;
   }
   */
 
-  if(typeof beforePreviousElementId === 'undefined')
+  var aName;
+
+  if(typeof beforePreviousElementChildId === 'undefined')
   {
-    aNumber = Number(aNumber);
-    aNumber = aNumber + 1;
-    aNumber = aNumber.toString();
+    aName = lastInputElementId + 'e';
   }
   else
   {
-    let numberIndex3 = -1;
-
-    numberInstance = 0;
-
-    // Iterate through the string to find the index of the first numeric character
-    for(let k = 0; k < beforePreviousElementId.length; k++)
-    {
-      if (!isNaN(beforePreviousElementId[k]) && beforePreviousElementId[k] !== ' ')
-      {
-        if(numberInstance > 0)
-        {
-          numberIndex3 = k; // Update the index when the first numeric character is found
-          break;
-        }
-        numberInstance++;
-      }
-    }
-
-    // Check if a numeric character was found and remove characters before it
-    let aNumber = numberIndex2 !== -1 ? firstAnswerId.substring(numberIndex2) 
-    : 'failed';
-
-
+    aName = beforePreviousElementChildId + 'e';
   }
-  
-  
+
   // new answer input with label to prepend to the new answer button
 
-  var label = $('<label>').attr('for', 'q' + qNumber + 'a' + aNumber).text
+  var label = $('<label>').attr('for', aName).text
   ('Answer: ');
 
   var input = $('<input>').attr({
     type: 'text',
-    name: aNumber,
-    id: 'q' + qNumber + 'a' + aNumber
+    name: aName,
+    id: aName
   });
 
   var lineBreak = '<br />';
 
-  $('#' + parentInputId).prepend(label, input, lineBreak);
+  $('#' + previousElementId).append(label, input, lineBreak);
 
   // test
-  document.getElementById("test").innerHTML = aNumber;
+  //document.getElementById("test2").innerHTML = aName;
   //$('#test').append(firstPreviousElement, secondPreviousElement);
 }
-
   
-  // This will prevent the enter button from submitting the forms
-  $(document).ready(function() {
-    $('form').on('keypress',
-    function(event) {
-      if(event.keyCode === 13) {
-        event.preventDefault();
-      }
-    });
+// This will prevent the enter button from submitting the forms
+$(document).ready(function() {
+  $('form').on('keypress',
+  function(event) {
+    if(event.keyCode === 13) {
+      event.preventDefault();
+    }
   });
-  //////////////////////////////////////////////////////////////////////////
+});
+//////////////////////////////////////////////////////////////////////////

@@ -23,6 +23,7 @@
         <title>Quiz</title>
         <?php
             include './includes/headLinks.php';
+            include './includes/functions/printQuiz.php';
         ?>
     </head>
 
@@ -30,7 +31,7 @@
         <?php
             include './includes/navbar.php';
         ?>
-        <div class='container rounded border border-primary shadow w-50'>
+        <div class='container rounded border border-primary shadow w-75'>
             <div class='container'>
                 <h1>Quizes</h1>
             </div>
@@ -67,45 +68,7 @@
                     // When a take quiz button is pressed print out that quiz ////////////////////////////
                     if(isset($_POST['takeQuiz']))
                     {
-                        // test
-                        //print('Take quiz button was activated');
-
-                        $qCount = 1;
-
-                        $qArray = array();
-
-                        // Putting the questions into an array while
-                        // retaining the original key values to shuffle them for the
-                        // user
-                        foreach ($_POST as $key => $value) 
-                        {  
-                            if($key % 2 == 1)
-                            {
-                                // Odd parity
-                                $qArray[$key] = $value;
-
-                                // test
-                                //print_r($qArray);
-                                //print('<br />');
-                            }
-                        }
-
-                        // Shuffle the question array to make the user print out less predictable
-                        uasort($qArray, function($a, $b) 
-                        {
-                            return rand(-1, 1);
-                        });
-
-                        // Printing out the questions for the user to answer
-                        foreach($qArray as $key => $value)
-                        {
-                            // User print out
-                            printf('Question ' . $qCount . ': ' . $value
-                                . '<br /> <input type="text" name=' . $key . ' >
-                                <br /><br />'
-                            );
-                            $qCount++;
-                        }
+                        printQuiz();
                     }
                     /////////////////////////////////////////////////////////////////////////////////////////
 

@@ -14,37 +14,47 @@
         include './includes/navbar.php';
       ?>
 
-      <div class='container rounded border border-primary shadow w-50'>
+      <div id='bodyDiv' class='container-xl rounded border border-primary shadow w-75'>
+
+        <form id="oldQuizForm" action="/oldQuiz.php" method="post">
+          <br />
+          <h3>Stored quizes</h3>
+
+          <input type="submit" class="btn btn-primary" value="Go to stored quizes">
+          <br /><br />
+        </form>
+
         <h1>Make a language vocabulary quiz.</h1>
-        <br /><br />
+        <br />
 
         <form id="dynamicForm" action="/newQuiz.php" method="post">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <button type="button" class="btn btn-primary" id="spawnButton">
-                New question
-              </button>
+              
               <br /><br />
 
               <h3>Quiz Name </h3>
               <input type='text' class="form-control" name='QuizName'>
               <br /><br />
 
-              <input type="submit" class="btn btn-primary" value="Submit">
-              <br /><br />
-            </form>
-
-            <form id="oldQuizForm" action="/oldQuiz.php" method="post">
-              <h3>Stored quizes</h3>
-
-              <input type="submit" class="btn btn-primary" value="Go to stored quizes">
-              <br /><br />
-
+              <!--- <input type="submit" class="btn btn-primary" value="Submit"> -->
+              
             </div>
           </div>
+          
         </form>
+        <button type="button" class="btn btn-primary" id="spawnButton">
+          New question
+        </button>
+        <br /><br />
+
+        <button type="submit" class="btn btn-primary" id="dynamicFormSubmit" form="dynamicForm">
+          Submit
+        </button>
+        <br /><br />
       </div>
       <h1 id="test"></h1>
+      <h1 id="test2"></h1>
     </body>
 
 </html>

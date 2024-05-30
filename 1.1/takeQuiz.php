@@ -1,19 +1,9 @@
 <?php
     // Start the session
     session_start();
-
-    // connect to the database
-    try 
-    {
-        $conn = new PDO("mysql:host=localhost;dbname=QuizDatabase", "root", "Chyuugokugo2");
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "Connected successfully"; 
-    } 
-    catch(PDOException $e) 
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    include './includes/functions/connectDatabase.php';
+    
+    $conn = connectDatabase();
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +12,8 @@
     <head>
         <title>Quiz</title>
         <?php
-            include './includes/headLinks.php';
+            include 'includes/headLinks.php';
+            include './includes/functions/printQuiz.php';
         ?>
     </head>
 
@@ -31,7 +22,7 @@
             include './includes/navbar.php';
         ?>
 
-        <div class='container rounded border border-primary shadow w-50'>
+        <div class='container rounded border border-primary shadow w-75'>
             <h1>Questions List</h1>
 
             <form action="/results.php" method="post" autocomplete="off">
@@ -60,6 +51,9 @@
                                 $stmt = $conn->prepare("SELECT * FROM Quiz
                                 WHERE NAME=?");
 
+                                //test
+                                //print($_POST['takeQuiz']);
+
                                 $params = array($_POST['takeQuiz']);
                                 
                                 // test //////////////////////////////////////////////////////////////////////////////
@@ -81,54 +75,24 @@
                                 //print_r($result[0]['Q_AND_A']);
                                 //print('<br />');
 
-                                $qCount = 1;
+                                //$qCount = 1;
 
                                 $qArray = array();
 
                                 $result[0]['Q_AND_A'] = unserialize($result[0]['Q_AND_A']);
 
-                                $_SESSION['POST'] = $result[0]['Q_AND_A']; 
+                                $_SESSION['POST'] = $result[0]['Q_AND_A'];
+
+                                // test
+                                //print('<pre>');
+                                //print_r($_SESSION['POST']);
+                                //print('</pre>');
+                                
+                                printQuiz($_SESSION['POST']);
 
                                 // test
                                 //print_r($result[0]['Q_AND_A']);
                                 //print('<br />');
-
-                                // Putting the questions into an array while
-                                // retaining the original key values to shuffle them for the
-                                // user
-                                foreach ($result[0]['Q_AND_A'] as $key => $value) 
-                                {  
-                                    $key = (int) $key;
-                                    //test 
-                                    //print('Foreach loop');
-
-                                    if($key % 2 == 1)
-                                    {
-                                        // Odd parity
-                                        $qArray[$key] = $value;
-
-                                        // test
-                                        //print_r($qArray);
-                                        //print('<br />');
-                                    }
-                                }
-
-                                // Shuffle the question array to make the user print out less predictable
-                                uasort($qArray, function($a, $b)
-                                {
-                                    return rand(-1, 1);
-                                });
-
-                                // Printing out the questions for the user to answer
-                                foreach($qArray as $key => $value)
-                                {
-                                    // User print out
-                                    printf('Question ' . $qCount . ': ' . $value
-                                        . '<br /> <input type="text" class="form-control w-25" name=' . $key . ' >
-                                        <br /><br />'
-                                    );
-                                    $qCount++;
-                                }
                             }
                             /////////////////////////////////////////////////////////////////////////////////////////
                         } 
@@ -144,6 +108,8 @@
 
                     <input type="submit" class="btn btn-primary" value="Submit Answers">
                 </form>
+                <br /><br />
+
             </div>
         </div>
     </body>
