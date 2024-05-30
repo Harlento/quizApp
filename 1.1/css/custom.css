@@ -62,6 +62,20 @@ a:hover{
     position: relative;
 }
 
+.rightAnswer{
+    color: rgb(27, 168, 27);
+}
+
+.wrongAnswer{
+    color: crimson;
+}
+
+.boldInlinePara{
+    font-weight: bold;
+    display: inline;
+}
+
+
 /* This is for mobile width ******************************************************************************************************/
 @media only screen and (max-width: 992px) {
     #Hero{
@@ -86,6 +100,14 @@ a:hover{
         height: 100px;
         width: 100px;
         background: url("../includes/images/linkedinIcon.png") no-repeat;
+    }
+
+    .thinNavbar{
+        display: block;
+    }
+
+    .wideNavbar{
+        display: none;
     }
 
     /* This can be used to display a smaller image to save computational resources on mobile while retaining fidelity on desktop */
@@ -132,6 +154,16 @@ a:hover{
         width: 60px;
         background: url("../includes/images/linkedinIcon.png") no-repeat;
         background-color: #1111a3;
+    }
+
+    .thinNavbar{
+        display: none;
+    }
+
+    
+
+    .wideNavbar{
+        display: block;
     }
 
     /* This can be used to display a smaller image to save computational resources on mobile while retaining fidelity on desktop */
