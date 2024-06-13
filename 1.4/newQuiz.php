@@ -120,12 +120,6 @@
 
                 <input type="submit" class="btn btn-primary" value="Submit Answers">
             </form>
-            <h1 id="test1"></h1>
-            <h1 id="test2"></h1>
-            <h1 id="test3"></h1>
-            <h1 id="test4"></h1>
-            <h1 id="test5"></h1>
-            <h1 id="test6"></h1>
             <br />
         </div>
     </body>
