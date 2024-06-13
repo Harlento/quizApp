@@ -399,7 +399,7 @@ function sendFormElements()
   //
   formHtml = $('#formHtml').val();
   formHtml = '<form id="dynamicForm" action="/databaseModUpdate.php" method="post">' + formHtml + '</form>';
-  formHtml = formHtml + '<button id="spawnButton" class="btn btn-primary" type="button"';
+  formHtml = formHtml + '<button id="spawnButton" onclick="addInputPair()" class="btn btn-primary" type="button"';
   formHtml = formHtml + ' form="dynamicForm">New question</button>';
 
   $('#formHtml').val(formHtml);
