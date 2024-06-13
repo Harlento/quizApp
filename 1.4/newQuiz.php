@@ -50,7 +50,7 @@
                 {
                     print('There was a quiz with the same name');
                     //$result = unserialize($result[0]['Q_AND_A']);
-                    //$_SESSION['postedQuiz'] = $_POST;
+                    $_SESSION['postedQuiz'] = $_POST;
 
                     header("Location: /index.php?uniqueName=false");
                 }
