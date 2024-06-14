@@ -31,7 +31,20 @@
                 form="alphaSort">
                     Sort alphabetically
                 </button>
-                <img id="sortChev" src="">
+
+
+                <!-- image tage chevron -->
+                <!-- <img id="sortChev" src=""> -->
+
+                <!--  -->
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="39px" height="25px"
+                    viewBox="0 0 1134 715">
+                    <path id="sortChev"
+                    fill="black" stroke="black" stroke-width="1"
+                    d="" 
+                    />
+                </svg>
 
                 <?php
                     if(($_REQUEST['alphaSort']))
