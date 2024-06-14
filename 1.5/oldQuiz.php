@@ -20,11 +20,49 @@
             include './includes/navbar.php';
         ?>
         <div class="container rounded border border-primary shadow w-75"
-        style="min-height: 80%;">
+        style="min-height: 100%;">
             <div class='container'>
                 <h1>Quizes</h1>
             </div>
-            
+            <form id="alphaSort" action="/oldQuiz.php" method="post" 
+            style="display: inline;">
+
+                <button id="" class="btn btn-info" type="submit" 
+                form="alphaSort">
+                    Sort alphabetically
+                </button>
+                <img id="sortChev" src="">
+
+                <?php
+                    if(($_REQUEST['alphaSort']))
+                    {
+                        if($_REQUEST['alphaSort'] == 'true')
+                        {
+                            print('
+                                <input id="aSortIn" name="alphaSort" value="false" hidden>
+                                <script>
+                                    chevronDirection();
+                                </script>
+                            ');
+                        }
+                        else
+                        {
+                            print('
+                                <input id="aSortIn" name="alphaSort" value="true" hidden>
+                                <script>
+                                    chevronDirection();
+                                </script>
+                            ');
+                        }
+                    }
+                    else
+                    {
+                        print('
+                            <input id="aSortIn" name="alphaSort" value="true" hidden>
+                        ');
+                    }
+                ?>
+            </form>
             <br /><br />
 
             <?php
@@ -41,8 +79,26 @@
                     // test
                     //print('Try block <br />');
 
-                    $selectStatement = $conn->prepare("SELECT NAME, Q_AND_A FROM
-                    Quiz");
+                    // if the alphabetical sort has been activated check the value
+                    // sort ascending or descending accordingly
+                    if((isset($_REQUEST['alphaSort'])))
+                    {
+                        if($_REQUEST['alphaSort'] == 'true')
+                        {
+                            $selectStatement = $conn->prepare("SELECT NAME FROM
+                            Quiz ORDER BY NAME ASC");
+                        }
+                        else
+                        {
+                            $selectStatement = $conn->prepare("SELECT NAME FROM
+                            Quiz ORDER BY NAME DESC");
+                        } 
+                    }
+                    else
+                    {
+                        $selectStatement = $conn->prepare("SELECT NAME FROM
+                        Quiz");
+                    }
 
                     $selectStatement->execute();
 
@@ -66,7 +122,7 @@
                         printf('
                             <form id="form2" action="takeQuiz.php" method="post">
                                 <input type="submit" class="btn btn-primary" 
-                                name="takeQuiz" value="' . $data['NAME'] . '"> 
+                                name="takeQuiz" value="' . $data['NAME'] . '">
                                 <br />
                             </form>
 
@@ -104,11 +160,6 @@
                 {
                     echo "Error: " . $e->getMessage();
                 }
-
-                // test
-                //print_r($_SESSION);
-                //printf('<br />' . $_SESSION['POST']['3']);
-                //print($_SERVER['PHP_SELF']);
             ?>
         </div>
 

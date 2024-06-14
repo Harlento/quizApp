@@ -46,6 +46,7 @@
                 // 
                 if((sizeof($result) == 0) && ($_POST['QuizName'] != ""))
                 {
+
                     $stmt = $conn->prepare("INSERT INTO Quiz (Q_AND_A, NAME) 
                     VALUES (:Q_AND_A, :NAME)");
                     $stmt->bindParam(':Q_AND_A', $array);
@@ -75,7 +76,7 @@
         ?>
 
         <div class="container rounded border border-primary shadow w-75"
-        style="min-height: 80%;">
+        style="min-height: 100%;">
             <h1>Questions List</h1>
 
             <br /><br />

@@ -32,7 +32,7 @@
         ?>
 
         <div class="container rounded border border-primary shadow w-75"
-        style="min-height: 80%;">
+        style="min-height: 100%;">
             <?php
                 $question = 0;
 

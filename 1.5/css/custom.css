@@ -122,9 +122,11 @@ a:hover{
         display: none;
     }
 
+    /*
     .linkHover > *:hover {
         background-color: #1111a3 !important;
     }
+    */
 
     .bottomLink{
         position: sticky;

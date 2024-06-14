@@ -20,7 +20,7 @@
       ?>
 
       <div id="bodyDiv" class="container-xl rounded border border-primary shadow w-75"
-      style="min-height: 80%;">
+      style="min-height: 100%;">
 
         <form id="oldQuizForm" action="/oldQuiz.php" method="post">
           <br />
@@ -31,7 +31,6 @@
         </form>
 
         <h1>Quiz creation form.</h1>
-        <!--- <br id="lineBreak1" /> -->
 
         <form id="dynamicForm" action="/newQuiz.php" method="post">
           <div class="form-row">
@@ -49,7 +48,7 @@
           </div>
         </form>
         <button type="button" class="btn btn-primary" id="spawnButton"
-        onclick="addInputPair()">
+        onclick="addInputPair(); movePage();">
           New question
         </button>
         <br id="lineBreak2" /><br id="lineBreak3" />
@@ -74,6 +73,18 @@
             ');
 
             print($_SESSION['postedQuiz']['formHtml'] . '<br /><br />');
+
+            // change the action of the dynamicForm
+            print('
+              <script>
+                changeFormAction();
+                // Set a new URL
+                var newUrl = "index.php";
+
+                // Update the browser URL
+                window.location.href = newUrl;
+              </script>
+            ');
           }
 
           // 
@@ -89,20 +100,34 @@
                 $("#lineBreak2").remove();
                 $("#lineBreak3").remove();
 
-                confirm("The name of the quiz must be filled for it to be stored.");
+                confirm("The name of the quiz must be provided for it to be stored.");
               </script>
             ');
 
             print($_SESSION['postedQuiz']['formHtml'] . '<br /><br />');
+
+            // change the action of the dynamicForm
+            print('
+              <script>
+                changeFormAction();
+                // Set a new URL
+                var newUrl = "index.php";
+
+                // Update the browser URL
+                window.location.href = newUrl;
+              </script>
+            ');
           }
         ?>
 
         <form id="quickCreate" action="/index.php" method="post">
           <h3>Provide desired number of questions here</h3>
-          <input type="number" name="questionNumber" min="1" step="1">
+          This will only allow you to add 200 questions
+          <input id="questionBatchInput" type="number" name="questionNumber" 
+          value="" oninput="forceNumberRange()">
 
-          <button type="submit" class="btn btn-primary" id="quickCreateButton" 
-          form="quickCreate">
+          <button type="button" class="btn btn-primary" id="quickCreateButton" 
+          onclick="batchAddQuestions()">
             Print questions
           </button>
 
@@ -111,24 +136,9 @@
 
         <button type="submit" class="btn btn-primary" id="dynamicFormSubmit" 
         onclick="sendFormElements()" form="dynamicForm">
-          Submit
+          Make quiz
         </button>
         <br /><br />
-        
-        <?php
-          // 
-          if(isset($_REQUEST['questionNumber']))
-          {
-            for($i = 0; $i < $_REQUEST['questionNumber']; $i++)
-            {
-              print("
-                <script>
-                  addInputPair();
-                </script>
-              ");
-            }
-          }
-        ?>
       </div>
       
       <a style="text-decoration: none;" class="linkHover bottomLink" href="#top" aria-label="Back to top">

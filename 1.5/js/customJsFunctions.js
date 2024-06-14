@@ -1,3 +1,53 @@
+
+// 
+function chevronDirection()
+{
+  //$('#sortChev').attr('src', '/assets/downChevronScaledDown.png');
+  // check if the value is true or false changing the image source accordingly
+  if($('#aSortIn').val() == 'false')
+  {
+    // 
+    $('#sortChev').attr('src', '/assets/upChevronScaledDown.png');
+  }
+  else
+  {
+    // 
+    $('#sortChev').attr('src', '/assets/downChevronScaledDown.png');
+  }
+}
+
+// 
+function batchAddQuestions()
+{
+  // 
+  for(var i = 0; i < $('#questionBatchInput').val(); i++)
+  {
+    addInputPair();
+  }
+  // this moves the page down to the new bottom of it with new elements added in
+  movePage();
+}
+
+//
+function forceNumberRange()
+{
+  // 
+  if($('#questionBatchInput').val() < 0)
+  {
+    $('#questionBatchInput').val('0');
+  }
+  else if($('#questionBatchInput').val() > 200)
+  {
+    $('#questionBatchInput').val('200');
+  }
+}
+
+//
+function changeFormAction()
+{
+  $('#dynamicForm').attr('action', '/newQuiz.php');
+}
+
 // function that renames the questions and their labels when one is added or deleted
 function renameQuestions()
 {
@@ -150,7 +200,11 @@ function addInputPair()
 
   // rename the questions
   renameQuestions();
+}
 
+// this moves the page down to the bottom //////////////////////////////////////////////////////
+function movePage()
+{
   $('html, body').animate({ scrollTop: $(document).height() }, 1);
 }
 
